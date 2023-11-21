@@ -1,3 +1,4 @@
+import "./filter.css"
 function Filtertypes ()  {
 return (
   <>

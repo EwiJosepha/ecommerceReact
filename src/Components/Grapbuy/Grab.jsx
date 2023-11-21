@@ -1,3 +1,4 @@
+import "./grab.css"
 function Grab() {
   return (
     <>
@@ -10,7 +11,7 @@ function Grab() {
           </div>
 
           <div className="avatar">
-            <img src="/images/My project 1.png" id="img" />
+            <img src="src/assets/images/My project 1.png" id="img" />
           </div>
         </div>
       </div>

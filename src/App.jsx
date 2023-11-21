@@ -18,10 +18,10 @@ function App() {
       <Routes>
         <Route path="/Contact" element={<Contact />}/>
         <Route path="/Details" element={<Details />}/>
+        <Route path="/" element={<Home />}/>
       </Routes>
     </Router>
     
-    <Home />
     </QueryClientProvider>
     </>
   )

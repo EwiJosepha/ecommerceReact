@@ -8,6 +8,7 @@ function Home () {
       <Grab />
       <Filtertypes />
       <Mealcard />
+
       </>
     )
 }

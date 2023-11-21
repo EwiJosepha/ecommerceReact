@@ -15,8 +15,8 @@ function Categories () {
   });
   return (
     <>
-    {data?.map((categories)=>(
-      <option id="category">{categories}</option>
+    {data?.map((categories, index)=>(
+      <option id="category" key={index}>{categories}</option>
     ))}
 
     </>

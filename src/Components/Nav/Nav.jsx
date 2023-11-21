@@ -6,13 +6,13 @@ function Nav() {
   return (
     <>
       <div className="container1">
-        <div class="title">
+        <div className="title">
           <Link  to="/"id="atag">
             <h1 id="fashionhub">
               <i>FashionHub</i>
             </h1>
           </Link>
-          <div class="navlinks">
+          <div className="navlinks">
             <span>
               <select id="category">
                 <Categories />
@@ -20,7 +20,7 @@ function Nav() {
             </span>
             <span id="brand">Brand</span>
             <Link to="./Contact" id="contactdisplay">
-              <span class="contactt">Contact</span>
+              <span className="contactt">Contact</span>
             </Link>
             <span id="faq">FAQ's</span>
           </div>

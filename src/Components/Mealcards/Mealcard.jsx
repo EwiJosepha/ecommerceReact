@@ -1,10 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-// import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./meal.css";
+import { useEffect } from "react";
+import Paginatte from "./Paginatte";
+import { useState } from "react";
 
 function Mealcard() {
+  const [posts, setPosts] = useState([]);
+  const [currentpage, setCurrentpage] = useState(1);
+  const [postperpage, setPostperpage] = useState(10);
   // const navigate = useNavigate();
   const { data } = useQuery({
     queryKey: ["mealcard"],
@@ -17,17 +23,34 @@ function Mealcard() {
     },
   });
 
-  console.log(data);
+  useEffect(()=>{
+    setPosts(data)
+    console.log(posts);
+
+  },[])
+
+
+
+console.log(posts);
+const indexoflastpost = currentpage * postperpage
+const indexoffirstposst = indexoflastpost - postperpage
+const currentpost = posts.slice(indexoffirstposst, indexoflastpost)
+
+// function to update the page
+const paginate = (pagenumber)=> {
+  setCurrentpage(pagenumber)
+}
+  
   return (
     <>
       <div className="containerthumb">
-        {data?.map((item) => {
+        {currentpost?.map((item) => {
           return (
             <div className="top">
               <div className="subcard" id="subcards">
-                {/* <Link to="/Details"> */}
+                <Link to={ `./Details id=${item.id}`} >
                 <img src={item.thumbnail} id="details-page" />
-                {/* </Link> */}
+                </Link>
 
                 <i className="fa-regular fa-heart"></i>
               </div>
@@ -55,6 +78,7 @@ function Mealcard() {
             </div>
           );
         })}
+        <Paginatte postperpage={postperpage} totalposts={posts.length} paginate={paginate}/>
       </div>
     </>
   );

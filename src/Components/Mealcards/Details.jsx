@@ -1,7 +1,8 @@
+import Productss from "./Productss"
 function Details () {
   return (
     <>
-    <h1>hello</h1>
+    <Productss />
     </>
   )
   }

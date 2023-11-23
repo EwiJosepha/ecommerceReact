@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { number } from "yup";
 
 function Paginatte({ postperpage, totalposts, Paginate }) {
-  const pagenumbers = [];
   const [activepage, setActivepage] = useState(1);
+
+  const pagenumbers = [];
 
   for (let i = 1; i < Math.ceil(totalposts / postperpage); i++) {
     pagenumbers.push(i);
   }
 
-  const handlepageclick = (pagenumber)=>{
+
+
+  const handlepageclick = (number)=>{
     setActivepage(number)
     Paginate(number)
   }
@@ -20,7 +22,7 @@ function Paginatte({ postperpage, totalposts, Paginate }) {
           {pagenumbers.map((number) => (
             <li key={number}>
               <a
-                href="#"
+                href="!#"
                 onClick={() => {
                   handlepageclick(number);
                   Paginate(number);

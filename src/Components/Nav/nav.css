@@ -72,11 +72,11 @@
   border: none;
 }
 
-#category {
+/* #category {
   border: none;
   background-color: #fbf7fa;
   cursor: pointer;
-}
+} */
 
 #bell {
   display: flex;

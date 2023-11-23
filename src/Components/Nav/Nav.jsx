@@ -13,11 +13,10 @@ function Nav() {
             </h1>
           </Link>
           <div className="navlinks">
-            <span>
               <select id="category">
+                {/* <option value="">hello</option> */}
                 <Categories />
               </select>
-            </span>
             <span id="brand">Brand</span>
             <Link to="./Contact" id="contactdisplay">
               <span className="contactt">Contact</span>

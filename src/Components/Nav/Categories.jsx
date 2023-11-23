@@ -13,6 +13,8 @@ function Categories () {
       return res.data
     },
   });
+
+  console.log(data);
   return (
     <>
     {data?.map((categories, index)=>(

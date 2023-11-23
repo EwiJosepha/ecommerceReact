@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./meal.css";
+import axios from "axios";
 import { useEffect } from "react";
 import Paginatte from "./Paginatte";
 import { useState } from "react";
@@ -11,36 +10,44 @@ function Mealcard() {
   const [posts, setPosts] = useState([]);
   const [currentpage, setCurrentpage] = useState(1);
   const [postperpage, setPostperpage] = useState(10);
-  // const navigate = useNavigate();
-  const { data } = useQuery({
+
+  // useEffect(() => {
+  // }, []);
+
+  const { data, isLoading, error } = useQuery({
     queryKey: ["mealcard"],
     queryFn: async () => {
       const res = await axios.get(
-        `https://dummyjson.com/products?limit=0&skip=0`
+        `https://dummyjson.com/products?limit=10&skip=10`
       );
 
       return res.data.products;
     },
   });
 
-  useEffect(()=>{
-    setPosts(data)
-    console.log(posts);
+  // setCurrentpage(currentpage)
 
-  },[])
+  if (error) {
+    return <h1>An error Occured</h1>;
+  }
 
+  if (isLoading) {
+    return <h1>Loading ...</h1>;
+  }
 
+  console.log(data);
 
-console.log(posts);
-const indexoflastpost = currentpage * postperpage
-const indexoffirstposst = indexoflastpost - postperpage
-const currentpost = posts.slice(indexoffirstposst, indexoflastpost)
+  const indexoflastpost = currentpage * postperpage;
+  const indexoffirstposst = indexoflastpost - postperpage;
 
-// function to update the page
-const paginate = (pagenumber)=> {
-  setCurrentpage(pagenumber)
-}
-  
+  const currentpost = data.slice(indexoffirstposst, indexoflastpost);
+
+  const paginate = (pagenumber) => {
+    setCurrentpage(pagenumber);
+  };
+
+  console.log(data);
+
   return (
     <>
       <div className="containerthumb">
@@ -48,8 +55,8 @@ const paginate = (pagenumber)=> {
           return (
             <div className="top">
               <div className="subcard" id="subcards">
-                <Link to={ `./Details id=${item.id}`} >
-                <img src={item.thumbnail} id="details-page" />
+                <Link to={`./Details?id=${item.id}`}>
+                  <img src={item.thumbnail} id="details-page" />
                 </Link>
 
                 <i className="fa-regular fa-heart"></i>
@@ -78,7 +85,14 @@ const paginate = (pagenumber)=> {
             </div>
           );
         })}
-        <Paginatte postperpage={postperpage} totalposts={posts.length} paginate={paginate}/>
+       
+      </div>
+      <div className="previews">
+         <Paginatte
+          postperpage={postperpage}
+          totalposts={data.length}
+          paginate={paginate}
+        />
       </div>
     </>
   );

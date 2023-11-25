@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 function Simalarprod () {
+
   const params = useParams();
 
 
@@ -10,19 +11,57 @@ function Simalarprod () {
     queryKey: ["similarities"],
     queryFn: async () => {
       const meall = await axios.get(
-        `https://dummyjson.com/products/${params}`
-      ).then((response)=>response.data)
-      const mealCategory = await axios.get(`https://dummyjson.com/products?limit=10&skip=10=${meall.products[0].category}`)
+        `https://dummyjson.com/products/${params.id}`
+      ).then((res)=>res.data)
+      
+      const mealCategory = await axios.get(`https://dummyjson.com/products/category/${meall.category}`)
+
       return {
         meall, mealCategory: mealCategory.data
       }
     },
+    
   });
 
   console.log(data);
-  return(
+  console.log(params);
+  return (
     <>
-    </>
+
+    <div className="containersecond">
+      {data?.mealCategory.products.map((simi)=>(
+
+<div className="topp">
+  
+<div className="subcardd" id="subcardss">
+
+
+<img src={simi.thumbnail} id="detailss-page"/>
+</div>
+
+<div className="snikerspricee">
+  <span id="snykers">{simi.title}</span>
+  <span id="snykers-price">{simi.price}</span>
+</div>
+
+
+<div className="shoes-available">
+  <p id="shoes"> 5 types of shoes available</p>
+</div>
+<div className="stars">
+<span id="star" className="fa-star">{simi.rating}</span>
+</div>          
+<div className="date">
+  <button id="addtocard">Add to Card</button>
+  <button id="shortlist">Short List</button>
+</div>
+<div className="subcardd" id="subcardss">
+</div>
+</div>
+      ))}
+  
+  </div>
+  </>
   )
 }
 export default Simalarprod

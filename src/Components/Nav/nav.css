@@ -72,11 +72,12 @@
   border: none;
 }
 
-/* #category {
+#category {
   border: none;
-  background-color: #fbf7fa;
+  background-color: #f1dfed;
   cursor: pointer;
-} */
+  color: #f8dbf0;
+}
 
 #bell {
   display: flex;

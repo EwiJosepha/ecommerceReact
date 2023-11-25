@@ -1,5 +1,5 @@
 
-// import './products.css'
+import './products.css'
 import {useParams} from "react-router-dom"
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,19 +8,22 @@ import axios from "axios";
 
 
 function Products() {
-  
-  let params = useParams();
-console.log(params);
+  const params = useParams();
   const { data, isLoading, error } = useQuery({
     queryKey: ["singlemeal"],
     queryFn: async () => {
+      const id= params.id
       const res = await axios.get(
-        `https://dummyjson.com/products/${params}`
+        `https://dummyjson.com/products/${id}`
       );
+      console.log(res);
 
-      return res.data.products;
+
+      return res.data
     },
   });
+
+
 
   if (error) {
     return <h1>An error Occured</h1>;
@@ -64,7 +67,10 @@ console.log(params);
             </div>
 
             <div  className="mainlydescription">
-
+            <div className="display-des">
+          <h3 id="prod-description">Product Description</h3>
+          <p id="pr"><i>{data?.description}</i></p>
+        </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import "./meal.css";
+import './meal.css'
+
 import axios from "axios";
 import { useEffect } from "react";
 import Paginatte from "./Paginatte";
@@ -55,7 +56,7 @@ function Mealcard() {
           return (
             <div className="top">
               <div className="subcard" id="subcards">
-                <Link to={`./Details?id=${item.id}`}>
+                <Link to={`./Details/${item.id}`}>
                   <img src={item.thumbnail} id="details-page" />
                 </Link>
 

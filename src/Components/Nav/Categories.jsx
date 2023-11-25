@@ -1,28 +1,29 @@
- import { useQuery } from "@tanstack/react-query"
- import axios from "axios"
+import "./nav.css";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-
-function Categories () {
+function Categories() {
   const { data } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://dummyjson.com/products/categories`
-      );
+      const res = await axios.get(`https://dummyjson.com/products/categories`);
 
-      return res.data
+      return res.data;
     },
   });
 
   console.log(data);
   return (
     <>
-    {data?.map((categories, index)=>(
-      <option id="category" key={index}>{categories}</option>
-    ))}
-
+      <select id="category">
+        {data?.map((categories, index) => (
+          <option key={index}>
+            {categories}
+          </option>
+        ))}
+      </select>
     </>
-  )
+  );
 }
 
-export default Categories
+export default Categories;

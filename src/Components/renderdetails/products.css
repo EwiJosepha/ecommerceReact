@@ -368,6 +368,8 @@ h4 {
   background-color: fff;
   border: 1px solid #6a6666;
   border-radius: 6px;
+  height: 120px;
+
 }
 
 .subcard {
@@ -378,7 +380,6 @@ h4 {
   position: relative;
   border-radius: 10px;
 }
-
 
 .subcard img {
   width: 100%;
@@ -392,4 +393,28 @@ h4 {
   padding-top: 20px;
   position: absolute;
   margin-left: -50px;
+ }
+
+ #prod-description {
+  color: #303e6f;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 3;
+ }
+
+ .container3 {
+  padding-top: 40px;
+}
+
+.ckecked {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+
+#space {
+  line-height: 3;
+  font-size: 18px;
+  color: #303e6f;
  }

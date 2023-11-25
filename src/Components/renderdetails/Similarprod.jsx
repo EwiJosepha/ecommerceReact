@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from "react";
 
 function Simalarprod () {
+  const [singleprod ,setSingleprod] =useState([])
 
   const params = useParams();
 
@@ -22,6 +24,24 @@ function Simalarprod () {
     },
     
   });
+
+
+function addtocard () {
+    let addedProduts = JSON.parse(localStorage.getItem("addedcards")) || []
+    addedProduts.push(singleprod)
+  
+    console.log(addedProduts);
+  
+    localStorage.setItem("addedcards", JSON.stringify(addedProduts))
+    itemselectedbasket.innerHTML = addedProduts.length;
+  
+    alert("added");
+ 
+}
+
+
+
+// itemselectedbasket.innerHTML = (JSON.parse(localStorage.getItem("addedcards")) || []).length
 
   console.log(data);
   console.log(params);
@@ -52,7 +72,7 @@ function Simalarprod () {
 <span id="star" className="fa-star">{simi.rating}</span>
 </div>          
 <div className="date">
-  <button id="addtocard">Add to Card</button>
+  <button id="addtocard" onClick={addtocard}>Add to Card</button>
   <button id="shortlist">Short List</button>
 </div>
 <div className="subcardd" id="subcardss">

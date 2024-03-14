@@ -1,12 +1,3 @@
-
-.product {
-  width: 100%;
-  max-height: 750px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .containerr {
   width: 100%;
   min-height: 100vh;
@@ -16,8 +7,16 @@
   justify-content: center;
 }
 
+.product {
+  width: 100%;
+  max-height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .gallery {
-  position: relative;
+  /* position: relative; */
   padding-bottom: 30px;
 }
 
@@ -361,35 +360,36 @@ h4 {
 
 .top {
   display: flex;
-  margin-top: 20px;
-  padding-top: 20px;
   padding: 10px;
   width: 90%;
   background-color: fff;
   border: 1px solid #6a6666;
   border-radius: 6px;
-  height: 120px;
+  height: 180px;
+  align-items: center;
 
 }
 
-.subcard {
+.subcardd {
   display: flex;
   overflow: hidden;
   width: 100%;
   gap: 30px;
   position: relative;
   border-radius: 10px;
+ 
 }
 
-.subcard img {
+.subcardd img {
   width: 100%;
-  height: 100px;
+  height: 110px;
+  border-radius: 5px;
   border: none;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
- .subcard .fa-regular {
+ .subcardd .fa-regular {
   padding-top: 20px;
   position: absolute;
   margin-left: -50px;
@@ -404,6 +404,7 @@ h4 {
 
  .container3 {
   padding-top: 40px;
+  padding: 8px;
 }
 
 .ckecked {
@@ -436,10 +437,10 @@ h4 {
     border-radius: 6px;
 }
 
- .subcardd {
+ /* .subcardd {
   gap: 30px;
   position: relative;
- }
+ } */
 
  .subcardd img {
   width: 100%;

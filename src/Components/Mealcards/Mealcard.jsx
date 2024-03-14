@@ -11,6 +11,7 @@ function Mealcard() {
   const [posts, setPosts] = useState([]);
   const [currentpage, setCurrentpage] = useState(1);
   const [postperpage, setPostperpage] = useState(10);
+  // const [imageid, setImageid]= useState()
 
   // useEffect(() => {
   // }, []);
@@ -25,8 +26,6 @@ function Mealcard() {
       return res.data.products;
     },
   });
-
-  // setCurrentpage(currentpage)
 
   if (error) {
     return <h1>An error Occured</h1>;
@@ -48,6 +47,21 @@ function Mealcard() {
   };
 
   console.log(data);
+
+  function addtolocalstorage (e) {
+    const imageid =e.target.dataset.imageid
+
+    const itemToAdd = data.find((pro) => +pro.id === +imageid)
+    const addedProduts = JSON.parse(localStorage.getItem("addedcards")) || [];
+
+    addedProduts.push(itemToAdd)
+
+    console.log(itemToAdd);
+
+    localStorage.setItem("addedcards", JSON.stringify(addedProduts));
+    alert("add to card");
+
+}
 
   return (
     <>
@@ -78,7 +92,8 @@ function Mealcard() {
                 <p id="number">(121)</p>
               </div>
               <div className="date">
-                <button id="addtocard" className="addtocard">
+                <button id="addtocard" className="addtocard" data-imageid={item.id} onClick={
+                addtolocalstorage}>
                   Add to Card
                 </button>
                 <button id="shortlist">Short List</button>

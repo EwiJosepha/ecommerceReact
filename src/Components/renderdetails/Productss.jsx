@@ -1,13 +1,18 @@
 
-import './products.css'
+// import './products.css'
 import {useParams} from "react-router-dom"
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from 'react';
+
+
 
 
 
 
 function Products() {
+  const [singleprod, setSingleprod] = useState([]);
+
   const params = useParams();
   const { data, isLoading, error } = useQuery({
     queryKey: ["singlemeal"],
@@ -18,7 +23,7 @@ function Products() {
       );
       console.log(res);
 
-
+      setsingleitem()
       return res.data
     },
   });
@@ -32,6 +37,27 @@ function Products() {
   if (isLoading) {
     return <h1>Loading ...</h1>;
   }
+
+  function setsingleitem() {
+    setSingleprod(data);
+  }
+
+
+ 
+    function addtocard() {
+      let addedProduts = JSON.parse(localStorage.getItem("addedcards")) || [];
+      addedProduts.push(singleprod);
+  
+      console.log(addedProduts);
+  
+      localStorage.setItem("addedcards", JSON.stringify(addedProduts));
+      // itemselectedbasket.innerHTML = addedProduts.length;
+  
+      alert("added");
+    }
+
+
+
 
   console.log(data);
   return (
@@ -51,15 +77,15 @@ function Products() {
             <div  className="container4">
 
               <div  className="top" >
+              <i  className="fa-solid fa-chevron-left" id="prev"></i>
 
-                <div  className="subcard " id="subcards">
+                <div  className="subcardd " id="subcards">
                   {data?.images.map((images)=>(
                     <img src={images} alt="image"/>
                   ))}
                   <i  className="fa-regular fa-heart"></i>
                 </div>
                 <div  className="prev-next">
-                  <i  className="fa-solid fa-chevron-left" id="prev"></i>
                   <i  className="fa-solid fa-chevron-right" id="next"></i>
                 </div>
               </div>
@@ -177,14 +203,11 @@ function Products() {
                   </div>
 
                   <div className="cardadd">
-                    <button id="buttonn">Add to Card</button>
+                    <button id="buttonn" className='addtocard' onClick={addtocard}>Add to Card</button>
                   </div>
-                  {/* <!-- <input type="number" value="1"> --> */}
                 </div>
                 <br />
                 <hr />
-
-              {/* </form> */}
               <div className="delevery">
                 <div className="deliverycar">
                   <i className="fa-solid fa-truck"></i>

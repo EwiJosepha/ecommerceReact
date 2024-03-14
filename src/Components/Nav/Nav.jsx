@@ -1,22 +1,30 @@
 import { Link } from "react-router-dom";
 import "./nav.css";
 import Categories from "./Categories";
+import { useState } from "react";
 
 function Nav() {
+  const [count, setCount]= useState(0)
+
+  
+  function countt () {
+    setCount((JSON.parse(localStorage.getItem("addedcards")) || []).length)
+  }
+
+
   return (
     <>
       <div className="container1">
         <div className="title">
-          <Link  to="/"id="atag">
+          <Link to="/" id="atag">
             <h1 id="fashionhub">
               <i>FashionHub</i>
             </h1>
           </Link>
           <div className="navlinks">
-             
-                <Categories />
-            
-            <span id="brand">Brand</span> 
+            <Categories />
+
+            <span id="brand">Brand</span>
             <Link to="./Contact" id="contactdisplay">
               <span className="contactt">Contact</span>
             </Link>
@@ -26,10 +34,9 @@ function Nav() {
 
         <div className="basket">
           <button id="basketimg">
-            <span id="items-selected"></span>
+            <span id="items-selected">{count}</span>
             <a href="http:${base_url}viewcards/cards.html">
-             
-              <i className="fa-solid fa-bag-shopping" id="navto-nextp"></i>
+              <i className="fa-solid fa-bag-shopping" id="navto-nextp" onClick={countt}></i>
             </a>
           </button>
           <button id="bell">

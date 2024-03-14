@@ -68,8 +68,8 @@ function Mealcard() {
       <div className="containerthumb">
         {currentpost?.map((item) => {
           return (
-            <div className="top">
-              <div className="subcard" id="subcards">
+            <div className="topp">
+              <div className="subcard" id="subcardds">
                 <Link to={`./Details/${item.id}`}>
                   <img src={item.thumbnail} id="details-page" />
                 </Link>
